@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<body>
+    <!-- 처음이자 마지막으로 body 안에 적는 html -->
+    <div id="root"></div>
+</body>
+<!-- React JS는 엔진! 어플리케이션이 interactive 하도록 만들어주는 library -->
+<script crossorigin src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<!-- React DOM은 모든 React Element를 body에 둘 수 있도록 해주는 library -->
+<script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script>
+    const root = document.getElementById("root");
+    const span = React.createElement(
+        "span", //tag
+        {id: "test-span", style: {color: "red"}}, //property
+        "Hello I'm a span" //inner text
+    );
+    ReactDOM.render(span, root);
+    /**
+     * [바닐라 JS] HTML을 먼저 만들고, 그걸 Javascript로 가져와서 HTML 수정
+     * [React JS] Javascript에서 시작되어 html으로 생성
+     * 
+     * React JS가 모든 html을 업데이트 하여 유저에게 보여줄 것을 컨트롤 한다는 것이 핵심
+    */
+</script>
+</html>
