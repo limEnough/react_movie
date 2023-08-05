@@ -13,38 +13,51 @@
      * for (X) htmlFor (O)
     */
     function App() {
-        const [minutes, setMinutes] = React.useState();
+        const [amount, setAmount] = React.useState(0);
+        const [flipped, setFlipped] = React.useState(false);
 
+        /** change amount  */
         const onChange = (event) => {
-            setMinutes(event.target.value);
+            setAmount(event.target.value);
         };
 
-        const reset = () => setMinutes(0);
+        /** reset amount state */
+        const onReset = () => setAmount(0);
+
+        /** flip inputable area */
+        const onFlip = () => {
+            onReset();
+            setFlipped((current) => !current)
+        };
 
         return (
             <div>
                 <h1 className="title">Super Converter</h1>
                 <div>
-                    <label htmlFor="minutes">Minutes</label>
+                    <label htmlFor="minutes">amount</label>
                     <input 
-                        value={minutes} 
+                        value={flipped ? amount * 60 : amount} 
                         id="minutes" 
-                        placeholder="Minutes" 
+                        placeholder="minutes" 
                         type="number" 
+                        disabled={flipped}
                         onChange={onChange}
                     />
                 </div>
                 <div>
                     <label htmlFor="hours">Hours</label>
                     <input 
-                        value={Math.floor((minutes/60)*10)/10} 
+                        value={flipped ? amount : Math.floor((amount/60)*10)/10} 
                         id="hours" 
                         placeholder="Hours" 
                         type="number" 
+                        onChange={onChange}
+                        disabled={!flipped}
                     />
                 </div>
 
-                <button type="button" onClick={reset}>Reset</button>
+                <button type="button" onClick={onReset}>Reset</button>
+                <button type="button" onClick={onFlip}>Flip</button>
             </div>
         )
     };
